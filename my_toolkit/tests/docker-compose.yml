@@ -1,0 +1,22 @@
+version: '2.3'
+services:
+  unit:
+    build:
+      context: ../..
+    command: bash -c """
+      tail -F anything
+      """"
+      
+      # python3 -c 'from ds_toolkit.monitor_utils.metrics import doc_coverage;print(doc_coverage(\"/root/ds_toolkit\")[\"value\"])'>/root/ds_toolkit/doc_cov.txt;
+      # echo 'Doc Coverage';
+      # cat /root/ds_toolkit/doc_cov.txt;
+      # cd /root/ds_toolkit/ds_toolkit;
+      # pytest-3 -x -vv --durations=30 --cov --cov-report term --cov-report html --cov-fail-under 66 tests/unit"""
+    environment:
+      - PYTHONPATH=.
+    # links:
+    #   - elasticsearch
+    #   - localstack
+    #   - pushgateway
+    # networks:
+    #   - internal
